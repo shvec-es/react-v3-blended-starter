@@ -13,9 +13,7 @@
   cursor: pointer;
   min-width: 36px;
   height: 36px;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   background-color: #ffffff;
 }
 
@@ -41,7 +39,7 @@
 }
 
 .active a {
-  color: #ffffff !important;
+  color: #ed1212 !important;
   font-weight: 600;
 }
 
