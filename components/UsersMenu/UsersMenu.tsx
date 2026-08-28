@@ -11,6 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 export default function UsersMenu() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0, width: 0 });
+  const [user, setUser] = useState('');
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -58,7 +59,7 @@ export default function UsersMenu() {
   return (
     <div className={css.menuContainer}>
       <button onClick={toggleMenu} className={css.menuButton} ref={buttonRef}>
-        Users
+        {user || 'Users'}
         <span className={css.arrow}></span>
       </button>
 
@@ -76,7 +77,14 @@ export default function UsersMenu() {
             }}
           >
             <li className={css.menuItem}>
-              <Link href={`/posts/filter/All`} className={css.menuLink}>
+              <Link
+                href={`/posts/filter/All`}
+                className={css.menuLink}
+                onClick={() => {
+                  setIsOpenMenu(false);
+                  setUser('All users');
+                }}
+              >
                 All users
               </Link>
             </li>
@@ -85,7 +93,10 @@ export default function UsersMenu() {
                 <Link
                   href={`/posts/filter/${user.id}`}
                   className={css.menuLink}
-                  onClick={() => setIsOpenMenu(false)}
+                  onClick={() => {
+                    setIsOpenMenu(false);
+                    setUser(user.name);
+                  }}
                 >
                   {user.name}
                 </Link>
